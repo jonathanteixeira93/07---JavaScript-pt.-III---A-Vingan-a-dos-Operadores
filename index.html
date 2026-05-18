@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cronômetro do jow</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <h1>Cronômetro</h1>
+      <h2>
+        <span class="hour">00</span>:<span class="minute">00</span>.<span class="second">00</span>
+      </h2>
+    </div>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+  </body>
+  <script>
+    let number = 0;
+    let number1 = 0;
+    let number2 = 0;
+    let cron;
+    let hour = document.querySelector(".hour");
+    let minute = document.querySelector(".minute");
+    let second = document.querySelector(".second");
+
+    function start() {
+      cron = setInterval(function () {
+        number++;
+        second.innerHTML = number.toString().padStart(2, "0");
+        switch (number) {
+          case 100:
+            number = 0;
+            number1++;
+            minute.innerHTML = number1.toString().padStart(2, "0");
+            break;
+        }
+        switch (number1) {
+          case 60:
+            number1 = 0;
+            number2++;
+            hour.innerHTML = number2.toString().padStart(2, "0");
+            break;
+        }
+        switch (number2) {
+          case 99:
+            number2 = 0;
+            break;
+        }
+      }, 10);
+    }
+    function stop() {
+      clearInterval(cron);
+    }
+  </script>
+</html>
